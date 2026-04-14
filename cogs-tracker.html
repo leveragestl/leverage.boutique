@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COGS Margin Tracker — Leverage Shopify Apps</title>
+<meta name="description" content="Shopify already stores your product costs. We turn that data into a real profit margin dashboard. See which products actually make money. $9.99/month.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-dark:#0C1220;--bg-mid:#0f1829;--bg-surface:#1a2540;--bg-surface-2:#1e2c48;
+  --text-primary:#f0f4ff;--text-secondary:#8a9bc4;--text-muted:#4d5e82;
+  --border:rgba(255,255,255,0.08);--border-hover:rgba(255,255,255,0.16);
+  --green:#22d3a0;--green-dim:rgba(34,211,160,0.1);
+  --accent:#a78bfa;--accent-dim:rgba(167,139,250,0.1);--accent-bright:#c4b5fd;
+  --font-display:'Bricolage Grotesque',sans-serif;--font-body:'DM Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--bg-dark);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(12,18,32,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--font-display);font-weight:800;font-size:20px;color:var(--text-primary);text-decoration:none;letter-spacing:-0.03em;}
+.nav-logo span{color:var(--green);}
+.nav-links{display:flex;align-items:center;gap:8px;list-style:none;}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-secondary);text-decoration:none;padding:6px 14px;border-radius:8px;transition:all 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--text-primary);background:rgba(255,255,255,0.05);}
+.nav-cta{background:var(--green)!important;color:#051a12!important;font-weight:700!important;}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;font-family:var(--font-body);font-size:15px;font-weight:600;text-decoration:none;transition:all 0.22s;}
+.btn-accent{background:var(--accent);color:#1a0a2e;}
+.btn-accent:hover{opacity:0.88;transform:translateY(-1px);}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+
+.page-hero{padding:140px 48px 80px;position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
+.page-hero-glow{position:absolute;top:-100px;right:-100px;width:700px;height:600px;background:radial-gradient(ellipse at center,rgba(167,139,250,0.08) 0%,transparent 70%);pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.app-pill{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:20px;background:var(--accent-dim);border:1px solid rgba(167,139,250,0.2);font-size:12px;font-weight:700;letter-spacing:0.07em;color:var(--accent);text-transform:uppercase;margin-bottom:24px;}
+.page-hero h1{font-family:var(--font-display);font-size:clamp(38px,5vw,58px);font-weight:800;letter-spacing:-0.035em;line-height:1.08;margin-bottom:20px;}
+.page-hero .sub{font-size:17px;color:var(--text-secondary);line-height:1.7;margin-bottom:32px;max-width:460px;}
+.hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:36px;}
+.hero-meta{display:flex;align-items:center;gap:20px;font-size:13px;color:var(--text-muted);flex-wrap:wrap;}
+.hero-meta span{display:flex;align-items:center;gap:6px;}
+.hero-meta span::before{content:'✓';color:var(--green);font-weight:700;}
+
+/* DASHBOARD MOCKUP */
+.dashboard-mockup{background:var(--bg-surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.dash-header{background:var(--bg-surface-2);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;}
+.dash-header-title{font-size:14px;font-weight:700;font-family:var(--font-display);}
+.dash-range{font-size:11px;color:var(--text-muted);background:var(--bg-surface);padding:4px 10px;border-radius:6px;border:1px solid var(--border);}
+.dash-body{padding:20px;}
+.dash-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
+.dash-metric{background:var(--bg-surface-2);border-radius:10px;padding:12px;}
+.dash-metric-label{font-size:10px;color:var(--text-muted);margin-bottom:4px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;}
+.dash-metric-value{font-family:var(--font-display);font-size:20px;font-weight:800;letter-spacing:-0.03em;}
+.dash-chart{background:var(--bg-surface-2);border-radius:10px;padding:14px;margin-bottom:12px;}
+.dash-chart-label{font-size:10px;color:var(--text-muted);margin-bottom:10px;font-weight:600;text-transform:uppercase;}
+.chart-bars{display:flex;align-items:flex-end;gap:4px;height:60px;}
+.chart-bar{flex:1;border-radius:3px 3px 0 0;transition:opacity 0.2s;}
+.chart-bar:hover{opacity:0.8;}
+.dash-table-header{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;padding:6px 8px;font-size:10px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;}
+.dash-table-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;padding:7px 8px;border-radius:6px;font-size:12px;align-items:center;}
+.dash-table-row:hover{background:rgba(255,255,255,0.03);}
+.margin-pill{display:inline-block;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700;}
+.margin-high{background:rgba(34,211,160,0.15);color:#22d3a0;}
+.margin-mid{background:rgba(245,158,11,0.15);color:#f59e0b;}
+.margin-low{background:rgba(239,68,68,0.15);color:#f87171;}
+
+/* FEATURES */
+.features-section{padding:80px 48px;background:var(--bg-mid);border-bottom:1px solid var(--border);}
+.features-inner{max-width:1100px;margin:0 auto;}
+.features-inner h2{font-family:var(--font-display);font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-0.03em;margin-bottom:48px;line-height:1.1;}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.feature-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:16px;padding:28px;}
+.feature-icon{font-size:28px;margin-bottom:16px;}
+.feature-card h3{font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:-0.01em;margin-bottom:8px;}
+.feature-card p{font-size:14px;color:var(--text-secondary);line-height:1.65;}
+
+/* SCREENS */
+.screens-section{padding:80px 48px;border-bottom:1px solid var(--border);}
+.screens-inner{max-width:1100px;margin:0 auto;}
+.screens-inner h2{font-family:var(--font-display);font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-0.03em;margin-bottom:48px;}
+.screen-list{display:flex;flex-direction:column;gap:24px;}
+.screen-item{background:var(--bg-surface);border:1px solid var(--border);border-radius:16px;padding:28px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:flex-start;}
+.screen-num{width:40px;height:40px;border-radius:10px;background:var(--accent-dim);border:1px solid rgba(167,139,250,0.2);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:18px;color:var(--accent);flex-shrink:0;}
+.screen-item h3{font-family:var(--font-display);font-size:18px;font-weight:700;margin-bottom:8px;letter-spacing:-0.01em;}
+.screen-item p{font-size:14px;color:var(--text-secondary);line-height:1.65;}
+.screen-item ul{list-style:none;display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+.screen-item li{font-size:12px;color:var(--accent);background:var(--accent-dim);padding:3px 10px;border-radius:20px;}
+
+/* MARGIN EXPLAINER */
+.margin-section{padding:80px 48px;background:var(--bg-mid);border-bottom:1px solid var(--border);}
+.margin-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.margin-text h2{font-family:var(--font-display);font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-0.03em;margin-bottom:20px;}
+.margin-text p{font-size:15px;color:var(--text-secondary);line-height:1.7;margin-bottom:16px;}
+.margin-cards{display:flex;flex-direction:column;gap:12px;}
+.margin-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;align-items:center;gap:16px;}
+.margin-indicator{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.margin-card h4{font-size:15px;font-weight:700;font-family:var(--font-display);margin-bottom:2px;}
+.margin-card p{font-size:13px;color:var(--text-secondary);}
+
+/* PRICING */
+.pricing-section{padding:80px 48px;border-bottom:1px solid var(--border);}
+.pricing-inner{max-width:700px;margin:0 auto;text-align:center;}
+.pricing-inner h2{font-family:var(--font-display);font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-0.03em;margin-bottom:16px;}
+.pricing-inner>p{font-size:16px;color:var(--text-secondary);margin-bottom:40px;}
+.pricing-card{background:var(--bg-surface);border:2px solid rgba(167,139,250,0.25);border-radius:20px;padding:40px;margin-bottom:24px;background:linear-gradient(160deg,rgba(167,139,250,0.05) 0%,var(--bg-surface) 60%);}
+.price-display{font-family:var(--font-display);font-size:72px;font-weight:800;letter-spacing:-0.05em;color:var(--accent);line-height:1;}
+.price-display sup{font-size:32px;vertical-align:super;line-height:0;}
+.price-period{font-size:15px;color:var(--text-muted);margin-bottom:8px;}
+.trial-badge{display:inline-block;padding:5px 14px;background:var(--green-dim);border-radius:20px;font-size:13px;color:var(--green);font-weight:600;margin-bottom:32px;}
+.price-compare{background:rgba(255,255,255,0.04);border-radius:10px;padding:16px;margin-bottom:28px;text-align:left;}
+.price-compare p{font-size:13px;color:var(--text-muted);margin-bottom:6px;}
+.price-compare strong{color:var(--text-secondary);}
+.price-features{list-style:none;text-align:left;display:flex;flex-direction:column;gap:12px;margin-bottom:32px;}
+.price-features li{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--text-secondary);}
+.price-features li span.ck{color:var(--accent);font-weight:700;}
+.cta-note{font-size:13px;color:var(--text-muted);}
+
+/* FAQ */
+.faq-section{padding:80px 48px;background:var(--bg-mid);}
+.faq-inner{max-width:720px;margin:0 auto;}
+.faq-inner h2{font-family:var(--font-display);font-size:clamp(28px,3.5vw,40px);font-weight:800;letter-spacing:-0.03em;margin-bottom:40px;}
+.faq-item{border-bottom:1px solid var(--border);padding:24px 0;}
+.faq-item:first-of-type{border-top:1px solid var(--border);}
+.faq-item h4{font-family:var(--font-display);font-size:16px;font-weight:700;margin-bottom:10px;letter-spacing:-0.01em;}
+.faq-item p{font-size:15px;color:var(--text-secondary);line-height:1.7;}
+
+footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px 48px 32px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;}
+.footer-brand .nav-logo{display:inline-block;margin-bottom:12px;font-family:var(--font-display);font-size:20px;font-weight:800;color:var(--text-primary);text-decoration:none;letter-spacing:-0.03em;}
+.footer-brand .nav-logo span{color:var(--green);}
+.footer-brand p{font-size:13px;color:var(--text-muted);line-height:1.65;max-width:220px;}
+.footer-col h4{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-col a{font-size:14px;color:var(--text-secondary);text-decoration:none;transition:color 0.2s;}
+.footer-col a:hover{color:var(--text-primary);}
+.footer-bottom{max-width:1100px;margin:40px auto 0;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.footer-bottom p{font-size:13px;color:var(--text-muted);}
+
+@media(max-width:900px){
+  nav{padding:0 24px;}.nav-links{display:none;}
+  .page-hero{padding:120px 24px 64px;}.page-hero-inner{grid-template-columns:1fr;gap:40px;}
+  .features-grid{grid-template-columns:1fr;}
+  .features-section,.screens-section,.margin-section,.pricing-section,.faq-section{padding:64px 24px;}
+  .margin-inner{grid-template-columns:1fr;gap:40px;}
+  .dash-metrics{grid-template-columns:1fr 1fr;}
+  .screen-item{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr 1fr;}footer{padding:48px 24px 24px;}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.page-hero-inner>*{animation:fadeUp 0.6s ease forwards;opacity:0;}
+.page-hero-inner>*:nth-child(1){animation-delay:0.1s;}.page-hero-inner>*:nth-child(2){animation-delay:0.25s;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Leverage<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="product-badges.html">Product Badges</a></li>
+    <li><a href="low-stock-alerts.html">Low Stock Alerts</a></li>
+    <li><a href="cogs-tracker.html" class="active">COGS Tracker</a></li>
+    <li><a href="privacy-policy.html">Privacy</a></li>
+    <li><a href="https://apps.shopify.com" target="_blank" class="nav-cta">Add to Shopify</a></li>
+  </ul>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-glow"></div>
+  <div class="page-hero-inner">
+    <div>
+      <div class="app-pill">📊 COGS Margin Tracker</div>
+      <h1>Finally know which products actually make money.</h1>
+      <p class="sub">Shopify already stores your cost-per-item. It just ignores it. We turn that data into a real gross margin dashboard — so you can see profit on every product and every order.</p>
+      <div class="hero-actions">
+        <a href="https://apps.shopify.com" target="_blank" class="btn btn-accent">Add to Shopify — $9.99/mo →</a>
+      </div>
+      <div class="hero-meta">
+        <span>7-day free trial</span>
+        <span>No setup required</span>
+        <span>Reads your existing cost data</span>
+      </div>
+    </div>
+
+    <!-- DASHBOARD MOCKUP -->
+    <div class="dashboard-mockup">
+      <div class="dash-header">
+        <div class="dash-header-title">Margin Dashboard</div>
+        <div class="dash-range">Last 30 days ▾</div>
+      </div>
+      <div class="dash-body">
+        <div class="dash-metrics">
+          <div class="dash-metric">
+            <div class="dash-metric-label">Revenue</div>
+            <div class="dash-metric-value" style="color:var(--text-primary)">$48.3k</div>
+          </div>
+          <div class="dash-metric">
+            <div class="dash-metric-label">COGS</div>
+            <div class="dash-metric-value" style="color:var(--text-secondary)">$18.7k</div>
+          </div>
+          <div class="dash-metric">
+            <div class="dash-metric-label">Gross Profit</div>
+            <div class="dash-metric-value" style="color:#22d3a0">$29.6k</div>
+          </div>
+          <div class="dash-metric">
+            <div class="dash-metric-label">Avg Margin</div>
+            <div class="dash-metric-value" style="color:var(--accent)">61%</div>
+          </div>
+        </div>
+        <div class="dash-chart">
+          <div class="dash-chart-label">Revenue vs. Gross Profit</div>
+          <div class="chart-bars">
+            <div class="chart-bar" style="height:55%;background:rgba(167,139,250,0.3)"></div>
+            <div class="chart-bar" style="height:34%;background:rgba(34,211,160,0.5)"></div>
+            <div class="chart-bar" style="height:62%;background:rgba(167,139,250,0.3)"></div>
+            <div class="chart-bar" style="height:40%;background:rgba(34,211,160,0.5)"></div>
+            <div class="chart-bar" style="height:71%;background:rgba(167,139,250,0.3)"></div>
+            <div class="chart-bar" style="height:44%;background:rgba(34,211,160,0.5)"></div>
+            <div class="chart-bar" style="height:80%;background:rgba(167,139,250,0.3)"></div>
+            <div class="chart-bar" style="height:52%;background:rgba(34,211,160,0.5)"></div>
+            <div class="chart-bar" style="height:68%;background:rgba(167,139,250,0.3)"></div>
+            <div class="chart-bar" style="height:43%;background:rgba(34,211,160,0.5)"></div>
+            <div class="chart-bar" style="height:75%;background:rgba(167,139,250,0.3)"></div>
+            <div class="chart-bar" style="height:48%;background:rgba(34,211,160,0.5)"></div>
+            <div class="chart-bar" style="height:100%;background:rgba(167,139,250,0.3)"></div>
+            <div class="chart-bar" style="height:63%;background:rgba(34,211,160,0.5)"></div>
+          </div>
+        </div>
+        <div class="dash-table-header">
+          <div>Product</div><div>Revenue</div><div>COGS</div><div>Margin</div>
+        </div>
+        <div class="dash-table-row">
+          <div style="font-size:12px;font-weight:600">Running Shoe</div>
+          <div style="font-size:12px;color:var(--text-secondary)">$12,340</div>
+          <div style="font-size:12px;color:var(--text-secondary)">$4,200</div>
+          <div><span class="margin-pill margin-high">66%</span></div>
+        </div>
+        <div class="dash-table-row">
+          <div style="font-size:12px;font-weight:600">Sport Tee</div>
+          <div style="font-size:12px;color:var(--text-secondary)">$8,100</div>
+          <div style="font-size:12px;color:var(--text-secondary)">$3,900</div>
+          <div><span class="margin-pill margin-mid">52%</span></div>
+        </div>
+        <div class="dash-table-row">
+          <div style="font-size:12px;font-weight:600">Classic Cap</div>
+          <div style="font-size:12px;color:var(--text-secondary)">$3,600</div>
+          <div style="font-size:12px;color:var(--text-secondary)">$2,880</div>
+          <div><span class="margin-pill margin-low">20%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features-section">
+  <div class="features-inner">
+    <p class="eyebrow">Features</p>
+    <h2>Real margin data. No spreadsheet required.</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📥</div>
+        <h3>Uses your existing cost data</h3>
+        <p>Shopify has a cost-per-item field on every variant. We read it on install — no data entry required if you've already filled it in.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <h3>Revenue vs. profit chart</h3>
+        <p>Time series view showing revenue and gross profit side-by-side across your selected date range. Immediately see if revenue growth is profitable or not.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Costs locked at order time</h3>
+        <p>When an order is placed, we lock the cost at that moment. If you update costs later, historical orders stay accurate — no retroactive distortion.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✏️</div>
+        <h3>Inline cost editing</h3>
+        <p>Click any cost field in the Products table to edit it inline. Saves immediately to both our dashboard and back to Shopify's cost field.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📤</div>
+        <h3>Bulk CSV import</h3>
+        <p>New to tracking costs? Download a pre-filled CSV with all your products, fill in your costs, and upload. Faster than editing products one by one.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3>Margin health indicators</h3>
+        <p>Products below 20% margin flag red. 20–40% shows amber. Above 40% is green. Instantly see your problem products without reading every row.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screens-section">
+  <div class="screens-inner">
+    <p class="eyebrow" style="color:var(--accent)">What you get</p>
+    <h2>Four views. Every angle covered.</h2>
+    <div class="screen-list">
+      <div class="screen-item">
+        <div class="screen-num">1</div>
+        <div>
+          <h3>Dashboard — overview metrics + chart</h3>
+          <p>Four summary metric cards (Revenue, COGS, Gross Profit, Avg Margin %) at the top, a Revenue vs. Gross Profit time series chart in the middle, and your Top 10 products by gross profit below. Date range selector covers last 7, 30, or 90 days, or a custom range.</p>
+          <ul><li>Revenue</li><li>COGS</li><li>Gross Profit</li><li>Avg Margin %</li><li>Date range filter</li></ul>
+        </div>
+      </div>
+      <div class="screen-item">
+        <div class="screen-num">2</div>
+        <div>
+          <h3>Products — per-product margin table</h3>
+          <p>Your complete product catalog with columns for Sale Price, Your Cost, Gross Profit, and Margin %. Color-coded margin indicators at a glance. Filter to show only missing costs or low-margin products. Inline cost editing — no separate settings screen.</p>
+          <ul><li>Color-coded margins</li><li>Inline editing</li><li>Missing cost filter</li><li>Sortable columns</li></ul>
+        </div>
+      </div>
+      <div class="screen-item">
+        <div class="screen-num">3</div>
+        <div>
+          <h3>Orders — per-order profit breakdown</h3>
+          <p>Every order with Revenue, COGS, Gross Profit, and Margin % shown at the order level. Click to expand any order and see the line-item breakdown. Filter by date range. Sort by margin to find your most and least profitable orders.</p>
+          <ul><li>Order-level margins</li><li>Line-item drill-down</li><li>Date filter</li><li>Sort by profit</li></ul>
+        </div>
+      </div>
+      <div class="screen-item">
+        <div class="screen-num">4</div>
+        <div>
+          <h3>Cost Import — bulk CSV upload</h3>
+          <p>Download a pre-filled CSV template with all your products (we fill in the product name, variant, SKU, and current sale price — you just add your cost column). Upload it back and we update all costs at once, both in the app and in Shopify.</p>
+          <ul><li>Pre-filled template</li><li>Drag-and-drop upload</li><li>Preview before import</li><li>Error row highlighting</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="margin-section">
+  <div class="margin-inner">
+    <div class="margin-text">
+      <p class="eyebrow">Margin health</p>
+      <h2>Know your problem products at a glance.</h2>
+      <p>The color-coded margin system makes it immediately obvious which products need attention — without reading every row of a table.</p>
+      <p>Margin % is calculated as gross profit margin: (Revenue − COGS) ÷ Revenue × 100. Industry standard, not markup.</p>
+    </div>
+    <div class="margin-cards">
+      <div class="margin-card">
+        <div class="margin-indicator" style="background:rgba(239,68,68,0.12)">🔴</div>
+        <div>
+          <h4 style="color:#f87171">Below 20% — Review needed</h4>
+          <p>Likely unprofitable after Shopify fees, payment processing, and shipping. These products need a price increase or cost reduction.</p>
+        </div>
+      </div>
+      <div class="margin-card">
+        <div class="margin-indicator" style="background:rgba(245,158,11,0.12)">🟡</div>
+        <div>
+          <h4 style="color:#fbbf24">20–40% — Watch closely</h4>
+          <p>Low but workable. Fees eat into this range significantly. Consider bundling or repositioning.</p>
+        </div>
+      </div>
+      <div class="margin-card">
+        <div class="margin-indicator" style="background:rgba(34,211,160,0.12)">🟢</div>
+        <div>
+          <h4 style="color:#22d3a0">40%+ — Healthy margin</h4>
+          <p>Strong gross margin. Enough room to absorb discounts, returns, and shipping without going into the red.</p>
+        </div>
+      </div>
+      <div class="margin-card">
+        <div class="margin-indicator" style="background:rgba(255,255,255,0.05)">⚪</div>
+        <div>
+          <h4 style="color:var(--text-muted)">No cost set — Incomplete data</h4>
+          <p>Cost not entered yet. The app highlights these so you can prioritize adding costs for your top-selling products first.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-section">
+  <div class="pricing-inner">
+    <p class="eyebrow" style="text-align:center">Pricing</p>
+    <h2>What's your margin worth?</h2>
+    <p>If this app helps you find and fix even one low-margin product, it pays for itself in minutes.</p>
+    <div class="pricing-card">
+      <div class="price-display"><sup>$</sup>9.99</div>
+      <div class="price-period">per month, billed monthly through Shopify</div>
+      <div class="trial-badge">✓ 7-day free trial included</div>
+      <div class="price-compare">
+        <p>vs. the alternatives:</p>
+        <strong>BeProfit: $25/mo · TrueProfit: $25/mo · Lifetimely: $34/mo</strong>
+      </div>
+      <ul class="price-features">
+        <li><span class="ck">✓</span> Full margin dashboard (revenue, COGS, gross profit, margin %)</li>
+        <li><span class="ck">✓</span> Revenue vs. profit time series chart</li>
+        <li><span class="ck">✓</span> Per-product margin table with color-coded indicators</li>
+        <li><span class="ck">✓</span> Per-order profit breakdown with line-item drill-down</li>
+        <li><span class="ck">✓</span> Bulk CSV cost import with pre-filled template</li>
+        <li><span class="ck">✓</span> Inline cost editing (syncs back to Shopify)</li>
+        <li><span class="ck">✓</span> Historical sync — last 60 days of orders on install</li>
+      </ul>
+      <a href="https://apps.shopify.com" target="_blank" class="btn btn-accent" style="width:100%;justify-content:center;font-size:16px;color:#1a0a2e;">Add to Shopify — Start free trial →</a>
+    </div>
+    <p class="cta-note">Billing handled securely by Shopify. Cancel anytime from your Shopify admin.</p>
+  </div>
+</section>
+
+<section class="faq-section">
+  <div class="faq-inner">
+    <h2>Common questions.</h2>
+    <div class="faq-item">
+      <h4>Do I need to enter all my costs before the app is useful?</h4>
+      <p>No. On install, the app runs a coverage audit and shows you exactly how many products have cost data vs. how many are missing. You can start with your top 10 products by revenue and work from there. The app filters to "missing costs only" to help you prioritize.</p>
+    </div>
+    <div class="faq-item">
+      <h4>If I already have costs in Shopify, do I need to re-enter them?</h4>
+      <p>No. We read your existing cost_per_item data on install. If you've already filled in costs in Shopify Admin → Products → Inventory → Cost per item, they're already in the app on day one.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Does it track ad spend or LTV?</h4>
+      <p>No. This app focuses purely on gross margin — revenue minus the cost of the goods sold. It doesn't track advertising spend, shipping costs, or customer lifetime value. If you need those, BeProfit or Lifetimely are built for that. We're the affordable version that does gross margins exceptionally well.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What happens to historical data if I update a product's cost?</h4>
+      <p>Nothing — historical orders are protected. When an order is placed, we lock the cost at that moment. Future cost changes only affect new orders. Your historical margin data stays accurate.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Does it work with multi-currency stores?</h4>
+      <p>In v1.0, margins are shown in your store's primary currency. Multi-currency support with per-currency margin breakdowns is on the roadmap.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">Leverage<span>.</span></a>
+      <p>Simple, affordable Shopify apps from a team with 15+ years in ecommerce development.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Apps</h4>
+      <ul>
+        <li><a href="product-badges.html">Product Badges</a></li>
+        <li><a href="low-stock-alerts.html">Low Stock Alerts</a></li>
+        <li><a href="cogs-tracker.html">COGS Tracker</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="https://leverageagency.com" target="_blank">Leverage Agency</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="mailto:support@leverageapps.com">Email Support</a></li>
+        <li><a href="https://apps.shopify.com" target="_blank">Shopify App Store</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Leverage. All rights reserved.</p>
+    <p style="color:var(--text-muted);font-size:12px;">Not affiliated with Shopify Inc.</p>
+  </div>
+</footer>
+
+</body>
+</html>
