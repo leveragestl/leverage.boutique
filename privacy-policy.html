@@ -149,7 +149,7 @@ footer{background:var(--bg-mid);border-top:1px solid var(--border);padding:40px 
           <td><strong>Inventory levels</strong></td>
           <td>Yes (auto low-stock rule only)</td>
           <td>Yes (core functionality)</td>
-          <td>Yes (stock value calc)</td>
+          <td>No</td>
         </tr>
         <tr>
           <td><strong>Product cost (cost_per_item)</strong></td>
@@ -173,7 +173,7 @@ footer{background:var(--bg-mid);border-top:1px solid var(--border);padding:40px 
           <td><strong>Customer data</strong></td>
           <td>No</td>
           <td>No</td>
-          <td>First name only, in order records</td>
+          <td>No</td>
         </tr>
         <tr>
           <td><strong>Payment information</strong></td>
@@ -185,7 +185,7 @@ footer{background:var(--bg-mid);border-top:1px solid var(--border);padding:40px 
     </table>
 
     <p><strong>Shopify OAuth access tokens</strong> are stored securely in our database with encryption at rest provided by our hosting infrastructure. We do not log access tokens in plaintext under any circumstances.</p>
-    <p><strong>No customer personal data is collected by Product Badges or Low Stock Alerts.</strong> COGS Tracker accesses order data for margin calculations, but stores only the first name of customers associated with orders — not email addresses, physical addresses, or payment information.</p>
+    <p><strong>None of our Apps collect customer personal data.</strong> COGS Tracker accesses order data for margin calculations, but stores only product titles, quantities, and financial amounts — not customer names, email addresses, physical addresses, or payment information.</p>
   </div>
 
   <div class="policy-section" id="how-used">
@@ -194,7 +194,7 @@ footer{background:var(--bg-mid);border-top:1px solid var(--border);padding:40px 
     <ul>
       <li><strong>Product Badges:</strong> Product data is used to assign badges and write badge configuration metafields to your products. Inventory data is used only if you enable the "Low Stock" auto-rule badge type.</li>
       <li><strong>Low Stock Alerts:</strong> Inventory levels are monitored in real-time via webhooks to determine when an alert should be sent. Merchant email addresses are used only to deliver alerts you've configured.</li>
-      <li><strong>COGS Margin Tracker:</strong> Product cost data and order line items are used to calculate and display gross margin metrics in the dashboard. Data is never used outside the dashboard context.</li>
+      <li><strong>COGS Margin Tracker:</strong> Product cost data, order line items, and merchant-entered expenses are used to calculate and display profit margin metrics. Aggregated, anonymous metrics may be sent to Anthropic's Claude API for AI-powered analysis when the merchant requests it. Data is never used outside the app context.</li>
     </ul>
     <p>We do <strong>not</strong> use your data for:</p>
     <ul>
@@ -212,6 +212,7 @@ footer{background:var(--bg-mid);border-top:1px solid var(--border);padding:40px 
       <li><strong>Supabase (database hosting):</strong> Our PostgreSQL database hosted on Supabase's infrastructure. Data is encrypted in transit and at rest. Supabase is SOC 2 Type II certified. <a href="https://supabase.com/privacy" target="_blank">Supabase Privacy Policy →</a></li>
       <li><strong>Railway (application hosting):</strong> Our server infrastructure. Railway does not access your data. <a href="https://railway.app/legal/privacy" target="_blank">Railway Privacy Policy →</a></li>
       <li><strong>Resend (email delivery, Low Stock Alerts only):</strong> Merchant email addresses are passed to Resend only to deliver alerts you've configured. Resend does not retain email content beyond delivery. <a href="https://resend.com/legal/privacy-policy" target="_blank">Resend Privacy Policy →</a></li>
+      <li><strong>Anthropic (AI analysis, Low Stock Alerts and COGS Tracker):</strong> Aggregated store metrics (revenue totals, margin percentages, top product names and performance) are sent to Anthropic's Claude API to generate insights and recommendations. No customer data or personally identifiable information is included. <a href="https://www.anthropic.com/privacy" target="_blank">Anthropic Privacy Policy →</a></li>
     </ul>
     <p>We may disclose your data if required by law, regulation, or court order, or to protect the rights, property, or safety of Leverage, our users, or the public.</p>
   </div>
@@ -237,7 +238,7 @@ footer{background:var(--bg-mid);border-top:1px solid var(--border);padding:40px 
       <li>All data is transmitted over HTTPS/TLS. HTTP connections are rejected.</li>
       <li>Shopify OAuth access tokens are stored securely with encryption at rest provided by our database infrastructure (Supabase).</li>
       <li>All Shopify webhook payloads are validated using HMAC-SHA256 signature verification before processing.</li>
-      <li>Our database (Supabase) uses row-level security with separate schema namespaces per app, so each app can only access its own data.</li>
+      <li>Each app uses a separate, isolated database so no data is shared between apps.</li>
       <li>We do not log access tokens, customer payment data, or other sensitive fields.</li>
     </ul>
     <p>No security system is perfect. If you discover a security vulnerability in any of our Apps, please report it to <a href="mailto:security@leverageapps.com">security@leverageapps.com</a>.</p>
@@ -257,14 +258,9 @@ footer{background:var(--bg-mid);border-top:1px solid var(--border);padding:40px 
     <p>To exercise any of these rights, contact us at <a href="mailto:privacy@leverageapps.com">privacy@leverageapps.com</a>. We will respond within 30 days.</p>
     <p>Our legal basis for processing your data is the performance of a contract — specifically, to provide the App services you have subscribed to.</p>
 
-    <h2 style="margin-top:32px">GDPR Data Request Endpoints</h2>
-    <p>In compliance with Shopify's GDPR requirements, we implement the following mandatory data request endpoints:</p>
-    <ul>
-      <li><strong>Customer data request:</strong> <code>POST /api/gdpr/customers/data_request</code></li>
-      <li><strong>Customer data redaction:</strong> <code>POST /api/gdpr/customers/redact</code></li>
-      <li><strong>Shop data redaction:</strong> <code>POST /api/gdpr/shop/redact</code></li>
-    </ul>
-    <p>Because our Apps (with the limited exception noted above for COGS Tracker) do not store customer personal data, customer data requests and redaction requests are automatically acknowledged. Shop data redaction is processed as an uninstall, triggering full data deletion.</p>
+    <h2 style="margin-top:32px">GDPR Data Request Handling</h2>
+    <p>In compliance with Shopify's GDPR requirements, we implement all mandatory data request webhooks: customer data requests, customer data redaction, and shop data redaction.</p>
+    <p>Because our Apps do not store customer personal data, customer data requests and redaction requests are automatically acknowledged. Shop data redaction triggers full deletion of all store data from our systems.</p>
   </div>
 
   <div class="policy-section" id="ccpa">
@@ -282,9 +278,8 @@ footer{background:var(--bg-mid);border-top:1px solid var(--border);padding:40px 
   <div class="policy-section" id="shopify-merchants">
     <h2>9. A note on your customers</h2>
     <p>Our Apps are installed by Shopify merchants. If you are a merchant using our Apps, you are responsible for ensuring that your use of our Apps complies with applicable privacy laws as they relate to your own customers.</p>
-    <p><strong>Product Badges</strong> and <strong>Low Stock Alerts</strong> do not collect, store, or process any data about your end customers. They operate entirely at the store-admin and inventory level.</p>
-    <p><strong>COGS Margin Tracker</strong> accesses order data to calculate margins. Orders contain a customer's first name, which is stored in our system solely for display purposes in the Orders view. We do not store customer email addresses, physical addresses, payment information, or any other personally identifying customer information beyond the first name.</p>
-    <p>If a customer of your store submits a data deletion request to you, and that customer has placed orders visible in COGS Tracker, you may contact us at <a href="mailto:privacy@leverageapps.com">privacy@leverageapps.com</a> to request redaction of that customer's name from our records. We will process such requests within 30 days.</p>
+    <p>None of our Apps collect, store, or process any personal data about your end customers. They operate entirely at the store-admin, inventory, and financial level.</p>
+    <p><strong>COGS Margin Tracker</strong> accesses order data to calculate margins, but stores only order numbers, product titles, quantities, and financial amounts. No customer names, email addresses, physical addresses, or payment information is stored.</p>
   </div>
 
   <div class="policy-section" id="contact">

@@ -1,2 +1,2 @@
-# leverage.boutique
+# leverageapps.co
 Leverage Shopify Apps

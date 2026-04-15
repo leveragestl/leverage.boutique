@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Low Stock Alerts — Leverage Shopify Apps</title>
-<meta name="description" content="Get an email the moment any Shopify product drops below your inventory threshold. Set it once, never get caught off guard again. $1.99/month.">
+<meta name="description" content="Get an email the moment any Shopify product drops below your inventory threshold. Sales velocity tracking, stockout predictions, and AI-powered weekly intelligence. $1.99/month.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
@@ -242,6 +242,21 @@ footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px
         <h3>Alert history log</h3>
         <p>30-day history of every alert sent — which product, what inventory level, when, who was notified. Useful for spotting patterns in your fastest-moving SKUs.</p>
       </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Sales velocity tracking</h3>
+        <p>See 7-day and 30-day sales velocity for every product, plus days-until-stockout predictions. Know which items need reordering before they hit zero.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>Weekly AI intelligence</h3>
+        <p>Get a weekly AI-powered inventory report analyzing your velocity trends, seasonal patterns, and reorder priorities — powered by Claude AI.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📅</div>
+        <h3>Lead time awareness</h3>
+        <p>Set supplier lead time per product so the app factors in how long restocking actually takes. Get alerted early enough to avoid gaps.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -283,6 +298,16 @@ footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px
       </div>
       <div class="compare-row">
         <div class="compare-label">24-hour cooldown protection</div>
+        <div class="compare-cell"><span class="check-n">✗</span></div>
+        <div class="compare-cell"><span class="check-y">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">Sales velocity tracking</div>
+        <div class="compare-cell"><span class="check-n">✗</span></div>
+        <div class="compare-cell"><span class="check-y">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">AI inventory intelligence</div>
         <div class="compare-cell"><span class="check-n">✗</span></div>
         <div class="compare-cell"><span class="check-y">✓</span></div>
       </div>
@@ -340,6 +365,9 @@ footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px
         <li><span class="ck">✓</span> Multiple email recipients (no seat limit)</li>
         <li><span class="ck">✓</span> 24-hour alert cooldown protection</li>
         <li><span class="ck">✓</span> 30-day alert history log</li>
+        <li><span class="ck">✓</span> Sales velocity tracking with stockout predictions</li>
+        <li><span class="ck">✓</span> Supplier lead time awareness</li>
+        <li><span class="ck">✓</span> Weekly AI-powered inventory intelligence</li>
         <li><span class="ck">✓</span> Test email to verify your setup</li>
       </ul>
       <a href="https://apps.shopify.com" target="_blank" class="btn btn-accent" style="width:100%;justify-content:center;font-size:16px;">Add to Shopify — Start free trial →</a>
@@ -357,7 +385,7 @@ footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px
     </div>
     <div class="faq-item">
       <h4>How quickly does the alert arrive?</h4>
-      <p>Typically within 60 seconds. We use Shopify's inventory_levels/update webhook, which fires in real time whenever inventory changes. We process it immediately. Email delivery via Resend typically takes 5–15 seconds on top of that.</p>
+      <p>Typically within 60 seconds. We use Shopify's real-time inventory webhooks, which fire the moment inventory changes. We process it immediately and send the email right away.</p>
     </div>
     <div class="faq-item">
       <h4>What if inventory bounces around a threshold repeatedly?</h4>
@@ -369,7 +397,7 @@ footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px
     </div>
     <div class="faq-item">
       <h4>Will the app monitor products across multiple locations?</h4>
-      <p>In v1.0, the app monitors total available inventory across all locations. Per-location threshold monitoring is on the roadmap for a future update.</p>
+      <p>The app monitors total available inventory across all your locations. If the combined stock drops below your threshold, you get alerted. Per-location threshold monitoring may be added in a future update based on demand.</p>
     </div>
   </div>
 </section>
@@ -391,7 +419,7 @@ footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px
     <div class="footer-col">
       <h4>Company</h4>
       <ul>
-        <li><a href="https://leverageagency.com" target="_blank">Leverage Agency</a></li>
+        <li><a href="https://leveragestl.com" target="_blank">Leverage</a></li>
         <li><a href="privacy-policy.html">Privacy Policy</a></li>
       </ul>
     </div>

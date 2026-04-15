@@ -338,7 +338,7 @@ footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px
     <h2>Common questions.</h2>
     <div class="faq-item">
       <h4>Will this slow down my store?</h4>
-      <p>No. Product Badges uses Shopify's Theme App Extension system, which is performance-optimized and lazy-loaded by Shopify's CDN. Independent Lighthouse audits show less than 50ms additional load time on collection pages.</p>
+      <p>No. Product Badges uses Shopify's Theme App Extension system, which is performance-optimized and served from Shopify's CDN. It adds minimal overhead — just a small script that reads product metafields and renders badges with no external API calls.</p>
     </div>
     <div class="faq-item">
       <h4>What happens if I uninstall?</h4>
@@ -350,7 +350,7 @@ footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px
     </div>
     <div class="faq-item">
       <h4>Can I show multiple badges on the same product?</h4>
-      <p>In v1.0, each product displays one badge (the highest-priority badge if multiple rules match). Multi-badge support is on the roadmap for v1.1.</p>
+      <p>Currently each product displays one badge. If you assign multiple badges to the same product, the most recently assigned one takes effect. This keeps the product cards clean and avoids visual clutter.</p>
     </div>
     <div class="faq-item">
       <h4>How do auto rules work?</h4>
@@ -376,7 +376,7 @@ footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px
     <div class="footer-col">
       <h4>Company</h4>
       <ul>
-        <li><a href="https://leverageagency.com" target="_blank">Leverage Agency</a></li>
+        <li><a href="https://leveragestl.com" target="_blank">Leverage</a></li>
         <li><a href="privacy-policy.html">Privacy Policy</a></li>
       </ul>
     </div>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>COGS Margin Tracker — Leverage Shopify Apps</title>
-<meta name="description" content="Shopify already stores your product costs. We turn that data into a real profit margin dashboard. See which products actually make money. $9.99/month.">
+<meta name="description" content="Shopify already stores your product costs — we turn that into a real profit dashboard. Margins, expenses, discount impact, and AI-powered insights. See which products actually make money. $9.99/month.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
@@ -174,7 +174,7 @@ footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px
     <div>
       <div class="app-pill">📊 COGS Margin Tracker</div>
       <h1>Finally know which products actually make money.</h1>
-      <p class="sub">Shopify already stores your cost-per-item. It just ignores it. We turn that data into a real gross margin dashboard — so you can see profit on every product and every order.</p>
+      <p class="sub">Shopify already stores your cost-per-item. It just ignores it. We turn that data into a full profit dashboard — margins, expenses, discount impact, and AI-powered recommendations to improve your bottom line.</p>
       <div class="hero-actions">
         <a href="https://apps.shopify.com" target="_blank" class="btn btn-accent">Add to Shopify — $9.99/mo →</a>
       </div>
@@ -192,14 +192,10 @@ footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px
         <div class="dash-range">Last 30 days ▾</div>
       </div>
       <div class="dash-body">
-        <div class="dash-metrics">
+        <div class="dash-metrics" style="grid-template-columns:repeat(3,1fr)">
           <div class="dash-metric">
             <div class="dash-metric-label">Revenue</div>
             <div class="dash-metric-value" style="color:var(--text-primary)">$48.3k</div>
-          </div>
-          <div class="dash-metric">
-            <div class="dash-metric-label">COGS</div>
-            <div class="dash-metric-value" style="color:var(--text-secondary)">$18.7k</div>
           </div>
           <div class="dash-metric">
             <div class="dash-metric-label">Gross Profit</div>
@@ -208,6 +204,18 @@ footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px
           <div class="dash-metric">
             <div class="dash-metric-label">Avg Margin</div>
             <div class="dash-metric-value" style="color:var(--accent)">61%</div>
+          </div>
+          <div class="dash-metric">
+            <div class="dash-metric-label">Net Profit</div>
+            <div class="dash-metric-value" style="color:#22d3a0">$27.8k</div>
+          </div>
+          <div class="dash-metric">
+            <div class="dash-metric-label">Fees</div>
+            <div class="dash-metric-value" style="color:var(--text-secondary)">$1.8k</div>
+          </div>
+          <div class="dash-metric">
+            <div class="dash-metric-label">Orders</div>
+            <div class="dash-metric-value" style="color:var(--text-secondary)">312</div>
           </div>
         </div>
         <div class="dash-chart">
@@ -258,7 +266,7 @@ footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px
 <section class="features-section">
   <div class="features-inner">
     <p class="eyebrow">Features</p>
-    <h2>Real margin data. No spreadsheet required.</h2>
+    <h2>Real profit data. No spreadsheet required.</h2>
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon">📥</div>
@@ -271,24 +279,39 @@ footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px
         <p>Time series view showing revenue and gross profit side-by-side across your selected date range. Immediately see if revenue growth is profitable or not.</p>
       </div>
       <div class="feature-card">
+        <div class="feature-icon">💳</div>
+        <h3>Payment fee deduction</h3>
+        <p>Configure your payment processing rates (default 2.9% + $0.30) and see net profit after fees. Most margin tools ignore this — we don't.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧾</div>
+        <h3>Expense tracking</h3>
+        <p>Add monthly overhead — advertising, shipping, software, suppliers. See how expenses affect your real margin, not just gross profit.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏷️</div>
+        <h3>Discount impact analysis</h3>
+        <p>See exactly how discounts affect your margins. Compare discounted vs. full-price order performance and identify which discount codes hurt profitability.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>AI-powered insights</h3>
+        <p>Get personalized profit recommendations powered by Claude AI. The app analyzes your data and suggests specific actions to improve margins.</p>
+      </div>
+      <div class="feature-card">
         <div class="feature-icon">🔒</div>
         <h3>Costs locked at order time</h3>
         <p>When an order is placed, we lock the cost at that moment. If you update costs later, historical orders stay accurate — no retroactive distortion.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">✏️</div>
-        <h3>Inline cost editing</h3>
-        <p>Click any cost field in the Products table to edit it inline. Saves immediately to both our dashboard and back to Shopify's cost field.</p>
+        <h3>Inline cost editing + CSV import</h3>
+        <p>Edit costs inline or bulk-import via CSV. Download a pre-filled template, add your costs, and upload. Changes sync back to Shopify automatically.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">📤</div>
-        <h3>Bulk CSV import</h3>
-        <p>New to tracking costs? Download a pre-filled CSV with all your products, fill in your costs, and upload. Faster than editing products one by one.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🎨</div>
-        <h3>Margin health indicators</h3>
-        <p>Products below 20% margin flag red. 20–40% shows amber. Above 40% is green. Instantly see your problem products without reading every row.</p>
+        <div class="feature-icon">🚨</div>
+        <h3>Margin alerts & smart insights</h3>
+        <p>Set a margin alert threshold and get warned when products fall below it. Rule-based insights detect trends, concentration risk, and discount problems automatically.</p>
       </div>
     </div>
   </div>
@@ -297,38 +320,62 @@ footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px
 <section class="screens-section">
   <div class="screens-inner">
     <p class="eyebrow" style="color:var(--accent)">What you get</p>
-    <h2>Four views. Every angle covered.</h2>
+    <h2>Seven views. Every angle covered.</h2>
     <div class="screen-list">
       <div class="screen-item">
         <div class="screen-num">1</div>
         <div>
-          <h3>Dashboard — overview metrics + chart</h3>
-          <p>Four summary metric cards (Revenue, COGS, Gross Profit, Avg Margin %) at the top, a Revenue vs. Gross Profit time series chart in the middle, and your Top 10 products by gross profit below. Date range selector covers last 7, 30, or 90 days, or a custom range.</p>
-          <ul><li>Revenue</li><li>COGS</li><li>Gross Profit</li><li>Avg Margin %</li><li>Date range filter</li></ul>
+          <h3>Dashboard — metrics, chart, insights & AI</h3>
+          <p>Six metric cards (Revenue, COGS, Gross Profit, Net Profit, Avg Margin, Transaction Fees), a Revenue vs. Profit time series chart, smart rule-based insights that detect margin trends and risks, and AI-powered recommendations you can track as a checklist.</p>
+          <ul><li>Net profit after fees</li><li>Smart insights</li><li>AI analysis</li><li>Top 10 products</li><li>7/30/90 day range</li></ul>
         </div>
       </div>
       <div class="screen-item">
         <div class="screen-num">2</div>
         <div>
           <h3>Products — per-product margin table</h3>
-          <p>Your complete product catalog with columns for Sale Price, Your Cost, Gross Profit, and Margin %. Color-coded margin indicators at a glance. Filter to show only missing costs or low-margin products. Inline cost editing — no separate settings screen.</p>
-          <ul><li>Color-coded margins</li><li>Inline editing</li><li>Missing cost filter</li><li>Sortable columns</li></ul>
+          <p>Your complete product catalog with Sale Price, Cost, and Margin %. Color-coded health indicators at a glance. Filter by margin range or missing costs. Click any cost to edit inline — saves to Shopify instantly.</p>
+          <ul><li>Color-coded margins</li><li>Inline editing</li><li>Margin filter</li><li>Search by name or SKU</li></ul>
         </div>
       </div>
       <div class="screen-item">
         <div class="screen-num">3</div>
         <div>
           <h3>Orders — per-order profit breakdown</h3>
-          <p>Every order with Revenue, COGS, Gross Profit, and Margin % shown at the order level. Click to expand any order and see the line-item breakdown. Filter by date range. Sort by margin to find your most and least profitable orders.</p>
-          <ul><li>Order-level margins</li><li>Line-item drill-down</li><li>Date filter</li><li>Sort by profit</li></ul>
+          <p>Every order line item with Revenue, Cost, Discount, Gross Profit, and Margin %. See exactly which orders made money and which didn't. Filter by date range to spot trends.</p>
+          <ul><li>Order-level margins</li><li>Discount tracking</li><li>Line-item detail</li><li>Date filter</li></ul>
         </div>
       </div>
       <div class="screen-item">
         <div class="screen-num">4</div>
         <div>
+          <h3>Discounts — impact analysis</h3>
+          <p>Compare discounted orders vs. full-price orders side by side. See average order value, margin impact, and total discount spend. Per-code breakdown shows which codes help and which hurt.</p>
+          <ul><li>Discounted vs. full-price</li><li>Per-code breakdown</li><li>Margin comparison</li><li>AOV analysis</li></ul>
+        </div>
+      </div>
+      <div class="screen-item">
+        <div class="screen-num">5</div>
+        <div>
+          <h3>Expenses — overhead tracking</h3>
+          <p>Add your recurring business costs — advertising, shipping, software, suppliers. Set frequency (weekly, monthly, yearly) and see how overhead affects your real margin beyond just COGS.</p>
+          <ul><li>Category tracking</li><li>Flexible frequency</li><li>Adjusted margin</li><li>Monthly equivalents</li></ul>
+        </div>
+      </div>
+      <div class="screen-item">
+        <div class="screen-num">6</div>
+        <div>
           <h3>Cost Import — bulk CSV upload</h3>
-          <p>Download a pre-filled CSV template with all your products (we fill in the product name, variant, SKU, and current sale price — you just add your cost column). Upload it back and we update all costs at once, both in the app and in Shopify.</p>
-          <ul><li>Pre-filled template</li><li>Drag-and-drop upload</li><li>Preview before import</li><li>Error row highlighting</li></ul>
+          <p>Download a pre-filled CSV template with all your products (name, variant, SKU, sale price). Add your cost column and upload. We update all costs at once, both in the app and in Shopify.</p>
+          <ul><li>Pre-filled template</li><li>Drag-and-drop upload</li><li>Preview before import</li><li>Export current costs</li></ul>
+        </div>
+      </div>
+      <div class="screen-item">
+        <div class="screen-num">7</div>
+        <div>
+          <h3>Setup — configuration & sync</h3>
+          <p>Sync products and historical orders from Shopify. Configure payment processing fees, set margin alert thresholds, and manage your data coverage. One-time setup that keeps itself current via webhooks.</p>
+          <ul><li>Product sync</li><li>Order sync</li><li>Payment fee config</li><li>Margin alerts</li></ul>
         </div>
       </div>
     </div>
@@ -390,13 +437,17 @@ footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px
         <strong>BeProfit: $25/mo · TrueProfit: $25/mo · Lifetimely: $34/mo</strong>
       </div>
       <ul class="price-features">
-        <li><span class="ck">✓</span> Full margin dashboard (revenue, COGS, gross profit, margin %)</li>
-        <li><span class="ck">✓</span> Revenue vs. profit time series chart</li>
-        <li><span class="ck">✓</span> Per-product margin table with color-coded indicators</li>
-        <li><span class="ck">✓</span> Per-order profit breakdown with line-item drill-down</li>
-        <li><span class="ck">✓</span> Bulk CSV cost import with pre-filled template</li>
-        <li><span class="ck">✓</span> Inline cost editing (syncs back to Shopify)</li>
-        <li><span class="ck">✓</span> Historical sync — last 60 days of orders on install</li>
+        <li><span class="ck">✓</span> Full profit dashboard with net profit after payment fees</li>
+        <li><span class="ck">✓</span> Revenue vs. profit chart with dollar-formatted axes</li>
+        <li><span class="ck">✓</span> Per-product margin table with inline cost editing</li>
+        <li><span class="ck">✓</span> Per-order profit breakdown with discount tracking</li>
+        <li><span class="ck">✓</span> Discount impact analysis with per-code breakdown</li>
+        <li><span class="ck">✓</span> Business expense tracking with adjusted margins</li>
+        <li><span class="ck">✓</span> AI-powered profit recommendations (Claude)</li>
+        <li><span class="ck">✓</span> Smart rule-based insights (always on, no API cost)</li>
+        <li><span class="ck">✓</span> Margin alert thresholds with color-coded indicators</li>
+        <li><span class="ck">✓</span> Bulk CSV import/export with pre-filled templates</li>
+        <li><span class="ck">✓</span> Historical order sync on install</li>
       </ul>
       <a href="https://apps.shopify.com" target="_blank" class="btn btn-accent" style="width:100%;justify-content:center;font-size:16px;color:#1a0a2e;">Add to Shopify — Start free trial →</a>
     </div>
@@ -416,16 +467,16 @@ footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px
       <p>No. We read your existing cost_per_item data on install. If you've already filled in costs in Shopify Admin → Products → Inventory → Cost per item, they're already in the app on day one.</p>
     </div>
     <div class="faq-item">
-      <h4>Does it track ad spend or LTV?</h4>
-      <p>No. This app focuses purely on gross margin — revenue minus the cost of the goods sold. It doesn't track advertising spend, shipping costs, or customer lifetime value. If you need those, BeProfit or Lifetimely are built for that. We're the affordable version that does gross margins exceptionally well.</p>
+      <h4>How does the AI analysis work?</h4>
+      <p>Click "Get AI Insights" on the dashboard and Claude AI analyzes your margin data, discount patterns, and expense impact. It returns 3–5 specific, actionable recommendations — things like "your top 3 products generate 72% of profit" or "discount code X is cutting margins to 12%." You can check off recommendations as you complete them to track your progress.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What are the "smart insights"?</h4>
+      <p>These are always-on pattern detections that run every time you load the dashboard — no setup needed. They detect things like margin trends, profit concentration risk, discount effectiveness, and expense impact. Think of them as automated alerts that surface problems before they become expensive.</p>
     </div>
     <div class="faq-item">
       <h4>What happens to historical data if I update a product's cost?</h4>
       <p>Nothing — historical orders are protected. When an order is placed, we lock the cost at that moment. Future cost changes only affect new orders. Your historical margin data stays accurate.</p>
-    </div>
-    <div class="faq-item">
-      <h4>Does it work with multi-currency stores?</h4>
-      <p>In v1.0, margins are shown in your store's primary currency. Multi-currency support with per-currency margin breakdowns is on the roadmap.</p>
     </div>
   </div>
 </section>
@@ -447,7 +498,7 @@ footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px
     <div class="footer-col">
       <h4>Company</h4>
       <ul>
-        <li><a href="https://leverageagency.com" target="_blank">Leverage Agency</a></li>
+        <li><a href="https://leveragestl.com" target="_blank">Leverage</a></li>
         <li><a href="privacy-policy.html">Privacy Policy</a></li>
       </ul>
     </div>
