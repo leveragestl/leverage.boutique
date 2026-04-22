@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support — Leverage Shopify Apps</title>
+<meta name="description" content="Get help with Leverage Shopify apps. Contact support, browse FAQs, and find setup guides for Product Badges, Low Stock Alerts, and COGS Tracker.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-dark:#0C1220;--bg-mid:#0f1829;--bg-surface:#1a2540;--bg-surface-2:#1e2c48;
+  --text-primary:#f0f4ff;--text-secondary:#8a9bc4;--text-muted:#4d5e82;
+  --border:rgba(255,255,255,0.08);--border-hover:rgba(255,255,255,0.16);
+  --green:#22d3a0;--green-dim:rgba(34,211,160,0.1);
+  --accent:#22d3a0;--accent-dim:rgba(34,211,160,0.1);
+  --font-display:'Bricolage Grotesque',sans-serif;--font-body:'DM Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--bg-dark);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(12,18,32,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--font-display);font-weight:800;font-size:20px;color:var(--text-primary);text-decoration:none;letter-spacing:-0.03em;}
+.nav-logo span{color:var(--green);}
+.nav-links{display:flex;align-items:center;gap:8px;list-style:none;}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-secondary);text-decoration:none;padding:6px 14px;border-radius:8px;transition:all 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--text-primary);background:rgba(255,255,255,0.05);}
+.nav-cta{background:var(--green)!important;color:#051a12!important;font-weight:700!important;}
+.nav-cta:hover{opacity:0.88;background:var(--green)!important;}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;font-family:var(--font-body);font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;border:none;transition:all 0.22s;}
+.btn-primary{background:var(--green);color:#051a12;}
+.btn-primary:hover{opacity:0.88;transform:translateY(-1px);}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text-secondary);}
+.btn-ghost:hover{border-color:var(--border-hover);color:var(--text-primary);}
+
+/* PAGE HERO */
+.page-hero{padding:140px 48px 80px;position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
+.page-hero-glow{position:absolute;top:-100px;right:-100px;width:600px;height:500px;background:radial-gradient(ellipse at center,rgba(34,211,160,0.08) 0%,transparent 70%);pointer-events:none;}
+.page-hero-inner{max-width:700px;margin:0 auto;text-align:center;}
+.app-pill{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:20px;background:var(--accent-dim);border:1px solid rgba(34,211,160,0.2);font-size:12px;font-weight:700;letter-spacing:0.07em;color:var(--accent);text-transform:uppercase;margin-bottom:24px;}
+.page-hero h1{font-family:var(--font-display);font-size:clamp(38px,5vw,56px);font-weight:800;letter-spacing:-0.035em;line-height:1.08;margin-bottom:20px;}
+.page-hero .sub{font-size:17px;color:var(--text-secondary);line-height:1.7;margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto;}
+
+/* CONTACT CARDS */
+.contact-section{padding:80px 48px;border-bottom:1px solid var(--border);}
+.contact-inner{max-width:1100px;margin:0 auto;}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);margin-bottom:14px;}
+.contact-inner h2{font-family:var(--font-display);font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-0.03em;margin-bottom:48px;line-height:1.1;}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.contact-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:16px;padding:32px;text-align:center;transition:all 0.25s;}
+.contact-card:hover{border-color:var(--border-hover);transform:translateY(-2px);}
+.contact-icon{font-size:32px;margin-bottom:16px;}
+.contact-card h3{font-family:var(--font-display);font-size:18px;font-weight:700;letter-spacing:-0.01em;margin-bottom:8px;}
+.contact-card p{font-size:14px;color:var(--text-secondary);line-height:1.65;margin-bottom:20px;}
+.contact-card a.btn{width:100%;justify-content:center;}
+
+/* APP HELP */
+.app-help{padding:80px 48px;background:var(--bg-mid);border-bottom:1px solid var(--border);}
+.app-help-inner{max-width:1100px;margin:0 auto;}
+.app-help h2{font-family:var(--font-display);font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-0.03em;margin-bottom:48px;}
+.help-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.help-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:16px;padding:28px;transition:all 0.25s;text-decoration:none;color:inherit;display:flex;flex-direction:column;}
+.help-card:hover{border-color:var(--border-hover);transform:translateY(-2px);}
+.help-card-icon{font-size:28px;margin-bottom:16px;}
+.help-card h3{font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:-0.01em;margin-bottom:8px;}
+.help-card p{font-size:14px;color:var(--text-secondary);line-height:1.65;margin-bottom:16px;flex:1;}
+.help-card-link{font-size:14px;font-weight:600;color:var(--text-muted);display:flex;align-items:center;gap:5px;transition:color 0.2s;}
+.help-card:hover .help-card-link{color:var(--text-primary);}
+
+/* FAQ */
+.faq-section{padding:80px 48px;border-bottom:1px solid var(--border);}
+.faq-inner{max-width:720px;margin:0 auto;}
+.faq-inner h2{font-family:var(--font-display);font-size:clamp(28px,3.5vw,40px);font-weight:800;letter-spacing:-0.03em;margin-bottom:40px;}
+.faq-item{border-bottom:1px solid var(--border);padding:24px 0;}
+.faq-item:first-of-type{border-top:1px solid var(--border);}
+.faq-item h4{font-family:var(--font-display);font-size:16px;font-weight:700;margin-bottom:10px;letter-spacing:-0.01em;}
+.faq-item p{font-size:15px;color:var(--text-secondary);line-height:1.7;}
+
+/* FOOTER */
+footer{background:var(--bg-dark);border-top:1px solid var(--border);padding:56px 48px 32px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;}
+.footer-brand .nav-logo{display:inline-block;margin-bottom:12px;font-family:var(--font-display);font-size:20px;font-weight:800;color:var(--text-primary);text-decoration:none;letter-spacing:-0.03em;}
+.footer-brand .nav-logo span{color:var(--green);}
+.footer-brand p{font-size:13px;color:var(--text-muted);line-height:1.65;max-width:220px;}
+.footer-col h4{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-col a{font-size:14px;color:var(--text-secondary);text-decoration:none;transition:color 0.2s;}
+.footer-col a:hover{color:var(--text-primary);}
+.footer-bottom{max-width:1100px;margin:40px auto 0;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.footer-bottom p{font-size:13px;color:var(--text-muted);}
+
+@media(max-width:900px){
+  nav{padding:0 24px;} .nav-links{display:none;}
+  .page-hero{padding:120px 24px 64px;}
+  .contact-grid{grid-template-columns:1fr;} .contact-section{padding:64px 24px;}
+  .help-grid{grid-template-columns:1fr;} .app-help{padding:64px 24px;}
+  .faq-section{padding:64px 24px;}
+  .footer-inner{grid-template-columns:1fr 1fr;} footer{padding:48px 24px 24px;}
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.page-hero-inner>*{animation:fadeUp 0.6s ease forwards;opacity:0;}
+.page-hero-inner>*:nth-child(1){animation-delay:0.1s;}
+.page-hero-inner>*:nth-child(2){animation-delay:0.2s;}
+.page-hero-inner>*:nth-child(3){animation-delay:0.3s;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../" class="nav-logo">Leverage<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="../product-badges/">Product Badges</a></li>
+    <li><a href="../low-stock-alerts/">Low Stock Alerts</a></li>
+    <li><a href="../cogs-tracker/">COGS Tracker</a></li>
+    <li><a href="../privacy-policy/">Privacy</a></li>
+    <li><a href="../support/" class="active">Support</a></li>
+    <li><a href="https://apps.shopify.com/partners/leverage" target="_blank" class="nav-cta">Browse Apps</a></li>
+  </ul>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-glow"></div>
+  <div class="page-hero-inner">
+    <div class="app-pill">Support</div>
+    <h1>We're here to help.</h1>
+    <p class="sub">Whether you're setting up for the first time or troubleshooting an issue, we'll get you sorted. Most questions are answered within a few hours.</p>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="contact-inner">
+    <p class="eyebrow">Get in touch</p>
+    <h2>Choose how you'd like to reach us.</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📧</div>
+        <h3>Email Support</h3>
+        <p>Send us a message and we'll get back to you within a few hours during business days.</p>
+        <a href="mailto:support@leverageapps.com" class="btn btn-primary">support@leverageapps.com</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🛍️</div>
+        <h3>Shopify App Store</h3>
+        <p>Find our apps on the Shopify App Store. Install, manage, or check for updates directly from your admin.</p>
+        <a href="https://apps.shopify.com/partners/leverage" target="_blank" class="btn btn-ghost">View on Shopify</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">⭐</div>
+        <h3>Leave a Review</h3>
+        <p>Happy with an app? A review on the Shopify App Store helps other merchants find us.</p>
+        <a href="https://apps.shopify.com/partners/leverage" target="_blank" class="btn btn-ghost">Review on Shopify</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="app-help">
+  <div class="app-help-inner">
+    <p class="eyebrow">App guides</p>
+    <h2>Quick help for each app.</h2>
+    <div class="help-grid">
+      <a href="../product-badges/" class="help-card">
+        <div class="help-card-icon">🏷️</div>
+        <h3>Product Badges</h3>
+        <p>Setup guide, badge types, auto-apply rules, positioning, and image badges. Everything you need to get badges live on your store.</p>
+        <div class="help-card-link">View app details <span>→</span></div>
+      </a>
+      <a href="../low-stock-alerts/" class="help-card">
+        <div class="help-card-icon">📦</div>
+        <h3>Low Stock Alerts</h3>
+        <p>Configure thresholds, set up email recipients, choose between instant alerts and daily digest, and understand sales velocity data.</p>
+        <div class="help-card-link">View app details <span>→</span></div>
+      </a>
+      <a href="../cogs-tracker/" class="help-card">
+        <div class="help-card-icon">📊</div>
+        <h3>COGS Margin Tracker</h3>
+        <p>Import product costs, track expenses, analyze discount impact, and use the profit dashboard to understand your real margins.</p>
+        <div class="help-card-link">View app details <span>→</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <div class="faq-inner">
+    <h2>Common questions.</h2>
+    <div class="faq-item">
+      <h4>How do I install a Leverage app?</h4>
+      <p>Find the app on the Shopify App Store and click "Add app." You'll be redirected to your Shopify admin to approve permissions. The app is ready to use immediately — no API keys or configuration files needed.</p>
+    </div>
+    <div class="faq-item">
+      <h4>How do I enable the Theme App Extension?</h4>
+      <p>After installing, go to your Shopify admin → Online Store → Themes → Customize. In the theme editor, find the app block in the left sidebar under "App embeds" and toggle it on. That's it — the app will start working on your storefront.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What happens if I uninstall?</h4>
+      <p>All Leverage apps use Theme App Extensions, which means nothing is injected into your theme files. When you uninstall, everything is removed cleanly with no leftover code or broken templates.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Do your apps work with my theme?</h4>
+      <p>Our apps work with all Shopify themes that support Online Store 2.0, which includes Dawn, Sense, Craft, and all modern paid themes. If you're on an older legacy theme, reach out and we'll let you know.</p>
+    </div>
+    <div class="faq-item">
+      <h4>How do I cancel or change my plan?</h4>
+      <p>All billing is handled through Shopify. To cancel, go to your Shopify admin → Settings → Billing → App subscriptions and remove the app. You won't be charged again after cancellation.</p>
+    </div>
+    <div class="faq-item">
+      <h4>I found a bug. How do I report it?</h4>
+      <p>Email us at support@leverageapps.com with a description of the issue, your store URL, and any screenshots. We take bug reports seriously and typically ship fixes within 24–48 hours.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="../" class="nav-logo">Leverage<span>.</span></a>
+      <p>Simple, affordable Shopify apps from a team with 15+ years in ecommerce development.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Apps</h4>
+      <ul>
+        <li><a href="../product-badges/">Product Badges</a></li>
+        <li><a href="../low-stock-alerts/">Low Stock Alerts</a></li>
+        <li><a href="../cogs-tracker/">COGS Tracker</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="https://leveragestl.com" target="_blank">Leverage</a></li>
+        <li><a href="../privacy-policy/">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="mailto:support@leverageapps.com">Email Support</a></li>
+        <li><a href="https://apps.shopify.com/partners/leverage" target="_blank">Shopify App Store</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Leverage. All rights reserved.</p>
+    <p style="color:var(--text-muted);font-size:12px;">Not affiliated with Shopify Inc.</p>
+  </div>
+</footer>
+
+</body>
+</html>
